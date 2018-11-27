@@ -1,0 +1,77 @@
+
+
+1. Run-length encoding modificado:
+
+Se pide al alumno implementar el algoritmo de compresión run-length en- coding modi􏰀cado. 
+Este algoritmo toma como entrada una cadena de símbolos representada como una lista de constantes, 
+y devuelve una lista de estructuras rlec(Symbol,Count) que denotan la aparición consecutiva de Count 
+(número en notación de Peano) símbolos Symbol en la entrada. Obviamente, el orden de las estructuras rlec/2 debe 
+respetar el orden de aparición de los símbolos en la lista original. Si un elemento apareciese solamente una vez entre 
+otros dos símbolos, este símbolo se copiará tal cual a la lista resultado, sin necesidad de estar encapsulado en una 
+estructura de tipo rlec(Symbol,Count). Se pide al alumno programar el predicado comprimir/2 con cabecera comprimir(LO,LC),
+donde LO y LC representan la lista de símbolos original y comprimida respectivamente. 
+Debe programarse también el predicado descomprimir/2 con descomprimir(LC,LO), que realiza la operación 
+inversa al predicado presión:
+
+Ejemplo:
+
+?- comprimir([a,a,a,a,a,a,a,b,b,b,b,b,c,c,d,d,d,d,e,f,f,f,
+f,f,g,e,a,a,aa,b],C).
+C = [rlec(a,s(s(s(s(s(s(s(0)))))))),rlec(b,s(s(s(s(s(0))))
+)),rlec(c,s(s(0))),rlec(d,s(s(s(s(0))))),e,rlec(f,s(s(s(s(
+s(0)))))),g,e,rlec(a,s(s(0))),aa,b] ? ;
+no
+cabecera de com-
+?- descomprimir([rlec(a,s(s(s(s(s(s(s(0)))))))),rlec(b,s(s(
+s(s(s(0)))))),rlec(c,s(s(0))),rlec(d,s(s(s(s(0))))),e,rlec
+(f,s(s(s(s(s(0)))))),g,e,rlec(a,s(s(0))),aa,b], D).
+D = [a,a,a,a,a,a,a,b,b,b,b,b,c,c,d,d,d,d,e,f,f,f,f,f,g,e,a
+,a,aa,b] ? ;
+________________________________________________
+2. Exploración de árboles n-arios:
+
+Se tiene la siguiente representación de árboles n-arios de números natura- les. 
+Las hojas del árbol se representan mediante la estructura hoja/1, donde el argumento 
+es el número natural almacenado en dicho nodo hoja. El resto de nodos (no hoja) se 
+representan utilizando la estructura nodo/2 con cabe- cera nodo(N,Hijos) donde N es el 
+número natural almacenado en dicho nodo e Hijos es una lista no vacía de árboles n-arios de 
+números naturales. Se pi- de programar el predicado menores/2 con cabecera menores(Arbol, Max) 
+que será cierto si dado el árbol n-ario Arbol (que puede contener variables en los nodos), 
+los números naturales almacenados en el árbol son todos menores o iguales a Max, que es un 
+número natural en notación de Peano. En caso de que el árbol contenga variables en los nodos, 
+estas deberán instanciarse con valores en dicho rango. Se pide también implementar el predicado 
+suma/2 con cabecera suma(Arbol, Suma) que dado el árbol n-ario Arbol calcula la suma de todos los 
+números naturales contenidos en el árbol y la uni􏰀ca con la variable Suma.
+
+Ejemplos:
+
+?- menores(nodo(s(s(0)),[nodo(s(0),[hoja(0),hoja(s(s(0))),nodo(
+s(s(s(0))),[hoja(s(0))])]),hoja(s(s(0))),hoja(0),hoja(s(s(0)))]
+),s(s(s(0)))).
+yes
+?- menores(nodo(s(s(0)),[nodo(s(0),[hoja(0),hoja(X),nodo(s(s(s(0
+))),[hoja(s(0))])]),hoja(Y),hoja(0),hoja(s(s(0)))]),s(s(s(0)))).
+
+
+X = 0, Y = 0 ? ;
+X = 0, Y = s(0) ? ;
+X = 0, Y = s(s(0)) ? ;
+X = 0, Y = s(s(s(0))) ? ;
+X = s(0), Y = 0 ? ;
+X = s(0), Y = s(0) ? ;
+X = s(0), Y = s(s(0)) ? ;
+X = s(0), Y = s(s(s(0))) ? ;
+X = s(s(0)), Y = 0 ? ;
+X = s(s(0)), Y = s(0) ? ;
+X = s(s(0)), Y = s(s(0)) ? ;
+X = s(s(0)), Y = s(s(s(0))) ? ;
+X = s(s(s(0))), Y = 0 ? ;
+X = s(s(s(0))), Y = s(0) ? ;
+X = s(s(s(0))), Y = s(s(0)) ? ;
+X = s(s(s(0))), Y = s(s(s(0))) ? ;
+no
+?- suma(nodo(s(s(0)),[nodo(s(0),
+[hoja(0),hoja(s(s(0))),nodo(s(s(s(0))),[hoja(s(0))])]),hoja(s(s(
+0))),hoja(0),hoja(s(s(0)))]),Suma).
+Suma = s(s(s(s(s(s(s(s(s(s(s(s(s(0))))))))))))) ? ;
+no

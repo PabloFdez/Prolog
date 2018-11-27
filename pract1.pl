@@ -1,10 +1,8 @@
 alumno_prode('Fernandez','Diaz','Pablo','V130148').
-alumno_prode('Gracia','Castaño','David','V130281').
-alumno_prode('Sanchez','Barrios','Alberto','Q080005').
+
 
 %Pablo Fernández Díaz v130148
-%David Gracia Castaño v130281
-%Alberto Sanchez Barrios q080005
+
 
 %%%%%%%%%%%%%%%%%%  COMPRIMIR/2  %%%%%%%%%%%%%%%%%%
 %comprimir de una lista vacía será siempre vacía
